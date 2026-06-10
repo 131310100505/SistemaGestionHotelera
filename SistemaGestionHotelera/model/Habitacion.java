@@ -1,4 +1,4 @@
-package com.grupo13.hotel.model;
+package SistemaGestionHotelera.model;
 
 /**
  * Clase de dominio que representa una habitacion del hotel.

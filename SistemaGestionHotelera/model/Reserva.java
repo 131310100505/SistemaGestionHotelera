@@ -1,11 +1,11 @@
-package com.grupo13.hotel.model;
+package SistemaGestionHotelera.model;
 
-import com.grupo13.hotel.model.servicio.ReservaBase;
-import com.grupo13.hotel.model.servicio.ServicioReserva;
-import com.grupo13.hotel.model.state.EstadoPendiente;
-import com.grupo13.hotel.model.state.EstadoReserva;
-import com.grupo13.hotel.strategy.DescuentoStrategy;
-import com.grupo13.hotel.strategy.SinDescuento;
+import SistemaGestionHotelera.model.servicio.ReservaBase;
+import SistemaGestionHotelera.model.servicio.ServicioReserva;
+import SistemaGestionHotelera.model.state.EstadoPendiente;
+import SistemaGestionHotelera.model.state.EstadoReserva;
+import SistemaGestionHotelera.strategy.DescuentoStrategy;
+import SistemaGestionHotelera.strategy.SinDescuento;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

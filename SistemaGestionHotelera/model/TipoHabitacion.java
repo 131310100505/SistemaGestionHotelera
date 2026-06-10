@@ -1,4 +1,4 @@
-package com.grupo13.hotel.model;
+package SistemaGestionHotelera.model;
 
 /**
  * Enumeracion de los tipos de habitacion disponibles en el hotel.

@@ -1,6 +1,6 @@
-package com.grupo13.hotel.model.state;
+package SistemaGestionHotelera.model.state;
 
-import com.grupo13.hotel.model.Reserva;
+import SistemaGestionHotelera.model.Reserva;
 
 /**
  * Patron STATE - Estado concreto: PENDIENTE.

@@ -1,4 +1,4 @@
-package com.grupo13.hotel.model.servicio;
+package SistemaGestionHotelera.model.servicio;
 
 /** Patron DECORATOR - Decorador concreto: servicio de spa. */
 public class ServicioSpa extends ServicioDecorator {

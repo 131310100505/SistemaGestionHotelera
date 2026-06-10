@@ -1,4 +1,4 @@
-package com.grupo13.hotel.model;
+package SistemaGestionHotelera.model;
 
 import java.time.LocalDate;
 

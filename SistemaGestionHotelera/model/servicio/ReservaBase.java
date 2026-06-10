@@ -1,4 +1,4 @@
-package com.grupo13.hotel.model.servicio;
+package SistemaGestionHotelera.model.servicio;
 
 /**
  * Patron DECORATOR - Componente concreto.
