@@ -25,7 +25,6 @@ import java.util.List;
  * Ofrece una interfaz unica y simplificada para operar el sistema hotelero,
  * ocultando la complejidad de coordinar los distintos controladores,
  * repositorios y patrones internos.
- *
  * GRASP - Bajo Acoplamiento: el cliente (Main) interactua solo con la
  * fachada y no con cada subsistema por separado.
  */
@@ -109,20 +108,17 @@ public class SistemaHotelFacade {
 
         switch (tipoServicio) {
             case "Desayuno":
-                reserva.agregarServicio(
-                        new SistemaGestionHotelera.model.servicio.ServicioDesayuno(reserva.getServicios())
-                );
+                reserva.agregarServicio(new SistemaGestionHotelera.model.servicio.ServicioDesayuno(reserva.getServicios()));
                 break;
+
             case "Spa":
-                reserva.agregarServicio(
-                        new SistemaGestionHotelera.model.servicio.ServicioSpa(reserva.getServicios())
-                );
+                reserva.agregarServicio(new SistemaGestionHotelera.model.servicio.ServicioSpa(reserva.getServicios()));
                 break;
+
             case "Cochera":
-                reserva.agregarServicio(
-                        new SistemaGestionHotelera.model.servicio.ServicioCochera(reserva.getServicios())
-                );
+                reserva.agregarServicio(new SistemaGestionHotelera.model.servicio.ServicioCochera(reserva.getServicios()));
                 break;
+
             default:
                 throw new IllegalArgumentException("Servicio inválido.");
         }

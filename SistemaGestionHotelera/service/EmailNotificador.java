@@ -1,6 +1,6 @@
+/** Notificador concreto que envia avisos por correo electronico. */
 package SistemaGestionHotelera.service;
 
-/** Notificador concreto que envia avisos por correo electronico. */
 public class EmailNotificador implements Notificador {
 
     @Override
