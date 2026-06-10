@@ -94,4 +94,44 @@ public class SistemaHotelFacade {
     public List<Reserva> consultarHistorial() {
         return reservaCtrl.consultarHistorial();
     }
+
+    public Reserva buscarReserva(int idReserva) {
+        for (Reserva r : consultarHistorial()) {
+            if (r.getId() == idReserva) {
+                return r;
+            }
+        }
+        throw new IllegalArgumentException("No existe la reserva #" + idReserva);
+    }
+
+    public void agregarServicioAdicional(int idReserva, String tipoServicio) {
+        Reserva reserva = buscarReserva(idReserva);
+
+        switch (tipoServicio) {
+            case "Desayuno":
+                reserva.agregarServicio(
+                        new SistemaGestionHotelera.model.servicio.ServicioDesayuno(reserva.getServicios())
+                );
+                break;
+            case "Spa":
+                reserva.agregarServicio(
+                        new SistemaGestionHotelera.model.servicio.ServicioSpa(reserva.getServicios())
+                );
+                break;
+            case "Cochera":
+                reserva.agregarServicio(
+                        new SistemaGestionHotelera.model.servicio.ServicioCochera(reserva.getServicios())
+                );
+                break;
+            default:
+                throw new IllegalArgumentException("Servicio inválido.");
+        }
+
+        reserva.calcularCosto();
+    }
+
+    public Pago registrarPago(int idReserva, String metodoPago) {
+        Reserva reserva = buscarReserva(idReserva);
+        return registrarPago(reserva, metodoPago);
+    }
 }
