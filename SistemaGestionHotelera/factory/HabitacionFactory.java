@@ -4,9 +4,9 @@ import SistemaGestionHotelera.model.Habitacion;
 
 /**
  * Patron FACTORY METHOD - Creador abstracto.
- * Centraliza la creacion de habitaciones. Cada fabrica concreta decide
- * que tipo de habitacion instanciar, evitando que los controladores
- * dependan de las clases concretas (principio DIP).
+ * Centraliza creacion de habitaciones. Cada fabrica concreta decide
+ * que tipo de habitacion instanciar, evita que los controladores
+ * dependan de clases concretas (principio DIP).
  */
 public abstract class HabitacionFactory {
 

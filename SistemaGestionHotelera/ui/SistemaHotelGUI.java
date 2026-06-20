@@ -22,32 +22,48 @@ public class SistemaHotelGUI extends JFrame {
     private final SistemaHotelFacade hotel = new SistemaHotelFacade();
     private final JTextArea salida = new JTextArea();
     private final NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "AR"));
+    private final boolean modoHuesped;
 
-    public SistemaHotelGUI() {
-        setTitle("Sistema de Gestión Hotelera");
-        setSize(850, 560);
+    public SistemaHotelGUI(boolean modoHuesped) {
+        this.modoHuesped = modoHuesped;
+
+        setTitle(modoHuesped ? "Sistema de Gestión Hotelera - Huésped" : "Sistema de Gestión Hotelera - Administrador");
+        setSize(900, 580);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(12, 12));
 
-        JLabel titulo = new JLabel("Sistema de Gestión Hotelera", SwingConstants.CENTER);
+        JLabel titulo = new JLabel(
+                modoHuesped ? "Sistema de Gestión Hotelera - Huésped" : "Sistema de Gestión Hotelera - Administrador",
+                SwingConstants.CENTER
+        );
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
         titulo.setBorder(BorderFactory.createEmptyBorder(15, 10, 10, 10));
 
         JPanel panelBotones = new JPanel(new GridLayout(0, 1, 8, 8));
         panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 15, 15, 10));
 
-        agregarBoton(panelBotones, "Registrar huésped", this::registrarHuesped);
-        agregarBoton(panelBotones, "Registrar habitación", this::registrarHabitacion);
-        agregarBoton(panelBotones, "Consultar disponibilidad", this::consultarDisponibilidad);
-        agregarBoton(panelBotones, "Crear reserva", this::crearReserva);
-        agregarBoton(panelBotones, "Confirmar reserva", this::confirmarReserva);
-        agregarBoton(panelBotones, "Cancelar reserva", this::cancelarReserva);
-        agregarBoton(panelBotones, "Finalizar reserva", this::finalizarReserva);
-        agregarBoton(panelBotones, "Agregar servicio", this::agregarServicio);
-        agregarBoton(panelBotones, "Registrar pago", this::registrarPago);
-        agregarBoton(panelBotones, "Consultar historial", this::consultarHistorial);
-        agregarBoton(panelBotones, "Limpiar pantalla", () -> salida.setText(""));
+        if (modoHuesped) {
+            agregarBoton(panelBotones, "Registrarme como huésped", this::registrarHuesped);
+            agregarBoton(panelBotones, "Consultar disponibilidad", this::consultarDisponibilidad);
+            agregarBoton(panelBotones, "Crear reserva", this::crearReserva);
+            agregarBoton(panelBotones, "Consultar estado de reserva", this::consultarEstadoReserva);
+            agregarBoton(panelBotones, "Consultar historial", this::consultarHistorial);
+            agregarBoton(panelBotones, "Limpiar pantalla", () -> salida.setText(""));
+        } else {
+            agregarBoton(panelBotones, "Registrar huésped", this::registrarHuesped);
+            agregarBoton(panelBotones, "Registrar habitación", this::registrarHabitacion);
+            agregarBoton(panelBotones, "Consultar disponibilidad", this::consultarDisponibilidad);
+            agregarBoton(panelBotones, "Crear reserva", this::crearReserva);
+            agregarBoton(panelBotones, "Consultar estado de reserva", this::consultarEstadoReserva);
+            agregarBoton(panelBotones, "Confirmar reserva", this::confirmarReserva);
+            agregarBoton(panelBotones, "Cancelar reserva", this::cancelarReserva);
+            agregarBoton(panelBotones, "Finalizar reserva", this::finalizarReserva);
+            agregarBoton(panelBotones, "Agregar servicio", this::agregarServicio);
+            agregarBoton(panelBotones, "Registrar pago", this::registrarPago);
+            agregarBoton(panelBotones, "Consultar historial", this::consultarHistorial);
+            agregarBoton(panelBotones, "Limpiar pantalla", () -> salida.setText(""));
+        }
 
         salida.setEditable(false);
         salida.setFont(new Font("Consolas", Font.PLAIN, 14));
@@ -60,7 +76,20 @@ public class SistemaHotelGUI extends JFrame {
         add(panelBotones, BorderLayout.WEST);
         add(scroll, BorderLayout.CENTER);
 
+        if (modoHuesped) {
+            cargarHabitacionesInicialesParaHuesped();
+        }
+
         mensajeInicial();
+    }
+
+    private void cargarHabitacionesInicialesParaHuesped() {
+        try {
+            hotel.registrarHabitacion(TipoHabitacion.STANDARD, 101);
+            hotel.registrarHabitacion(TipoHabitacion.PREMIUM, 201);
+            hotel.registrarHabitacion(TipoHabitacion.SUITE, 301);
+        } catch (Exception ignored) {
+        }
     }
 
     private void agregarBoton(JPanel panel, String texto, Runnable accion) {
@@ -146,6 +175,18 @@ public class SistemaHotelGUI extends JFrame {
         escribir("\nReserva creada correctamente:");
         escribir(reserva.toString());
         escribir("Servicios: " + reserva.getServicios().getDescripcion());
+        escribir("Total: " + moneda.format(reserva.calcularCosto()));
+    }
+
+    private void consultarEstadoReserva() {
+        int idReserva = pedirEntero("ID de reserva:");
+
+        Reserva reserva = hotel.buscarReserva(idReserva);
+
+        escribir("\n--- Estado de reserva ---");
+        escribir("Reserva #" + reserva.getId());
+        escribir("Huésped: " + reserva.getHuesped().getNombre());
+        escribir("Estado actual: " + reserva.getEstado().getNombre());
         escribir("Total: " + moneda.format(reserva.calcularCosto()));
     }
 
@@ -298,17 +339,76 @@ public class SistemaHotelGUI extends JFrame {
 
     private void mensajeInicial() {
         escribir("Bienvenido al Sistema de Gestión Hotelera.");
-        escribir("Use los botones de la izquierda para operar el sistema.");
-        escribir("Recomendación de prueba:");
-        escribir("1) Registrar huésped");
-        escribir("2) Registrar habitación");
-        escribir("3) Crear reserva");
-        escribir("4) Confirmar / agregar servicio / registrar pago");
-        escribir("");
+
+        if (modoHuesped) {
+            escribir("Modo de ingreso: HUÉSPED");
+            escribir("Opciones disponibles:");
+            escribir("1) Registrarme como huésped");
+            escribir("2) Consultar disponibilidad");
+            escribir("3) Crear reserva");
+            escribir("4) Consultar estado de reserva");
+            escribir("5) Consultar historial");
+            escribir("");
+        } else {
+            escribir("Modo de ingreso: ADMINISTRADOR");
+            escribir("Use los botones de la izquierda para operar el sistema.");
+            escribir("Recomendación de prueba:");
+            escribir("1) Registrar huésped");
+            escribir("2) Registrar habitación");
+            escribir("3) Crear reserva");
+            escribir("4) Confirmar / agregar servicio / registrar pago");
+            escribir("");
+        }
+    }
+
+    private static void mostrarMenuInicial() {
+        JFrame inicio = new JFrame("Sistema de Gestión Hotelera");
+        inicio.setSize(430, 280);
+        inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        inicio.setLocationRelativeTo(null);
+        inicio.setLayout(new BorderLayout(10, 10));
+
+        JLabel titulo = new JLabel("Sistema de Gestión Hotelera", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 22));
+        titulo.setBorder(BorderFactory.createEmptyBorder(25, 10, 10, 10));
+
+        JPanel panel = new JPanel(new GridLayout(2, 1, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 55, 40, 55));
+
+        JButton btnAdmin = new JButton("Ingresar como Administrador");
+        JButton btnHuesped = new JButton("Ingresar como Huésped");
+
+        btnAdmin.setFont(new Font("Arial", Font.BOLD, 14));
+        btnHuesped.setFont(new Font("Arial", Font.BOLD, 14));
+
+        btnAdmin.addActionListener(e -> {
+            String clave = JOptionPane.showInputDialog(inicio, "Ingrese contraseña de administrador:");
+
+            if (clave == null) return;
+
+            if (!clave.equals("admin123")) {
+                JOptionPane.showMessageDialog(inicio, "Contraseña incorrecta.", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            inicio.dispose();
+            new SistemaHotelGUI(false).setVisible(true);
+        });
+
+        btnHuesped.addActionListener(e -> {
+            inicio.dispose();
+            new SistemaHotelGUI(true).setVisible(true);
+        });
+
+        panel.add(btnAdmin);
+        panel.add(btnHuesped);
+
+        inicio.add(titulo, BorderLayout.NORTH);
+        inicio.add(panel, BorderLayout.CENTER);
+        inicio.setVisible(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SistemaHotelGUI().setVisible(true));
+        SwingUtilities.invokeLater(SistemaHotelGUI::mostrarMenuInicial);
     }
-
 }

@@ -6,8 +6,8 @@ import SistemaGestionHotelera.repository.HuespedRepository;
 import java.util.List;
 
 /**
- * Controlador de huespedes (GRASP - Controlador).
- * Coordina los casos de uso relacionados con huespedes (CU1).
+ * Controlador huespedes (GRASP - Controlador).
+ * Coordina casos de uso relacionados con huespedes (CU1).
  * SOLID - SRP: unica responsabilidad, gestionar huespedes.
  */
 public class HuespedController {

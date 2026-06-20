@@ -11,9 +11,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Controlador de reservas (GRASP - Controlador).
- * Coordina los casos de uso de creacion, confirmacion y cancelacion de
- * reservas (CU3, CU5, CU6). Delega el comportamiento de estado en la
+ * Controlador reservas (GRASP - Controlador).
+ * Coordina casos de uso de creacion, confirmacion y cancelacion de
+ * reservas (CU3, CU5, CU6). Delega comportamiento de estado en
  * propia Reserva (patron State) y el calculo del precio en su estrategia.
  *
  * SOLID - DIP: depende de la abstraccion {@link Notificador}, no de una

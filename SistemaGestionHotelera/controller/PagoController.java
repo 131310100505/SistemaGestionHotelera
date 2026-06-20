@@ -5,8 +5,8 @@ import SistemaGestionHotelera.model.Reserva;
 import SistemaGestionHotelera.repository.PagoRepository;
 
 /**
- * Controlador de pagos (GRASP - Controlador).
- * Coordina el registro de pagos asociados a una reserva (CU10).
+ * Controlador pagos (GRASP - Controlador).
+ * Coordina registro de pagos asociados a reserva (CU10).
  */
 public class PagoController {
 

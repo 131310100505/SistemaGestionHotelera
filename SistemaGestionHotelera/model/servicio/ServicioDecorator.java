@@ -2,7 +2,7 @@ package SistemaGestionHotelera.model.servicio;
 
 /**
  * Patron DECORATOR - Decorador abstracto.
- * Mantiene una referencia al componente decorado y delega en el.
+ * Mantiene referencia al componente decorado y delega en el.
  * Las subclases agregan responsabilidades (servicios) de forma dinamica.
  */
 public abstract class ServicioDecorator implements ServicioReserva {

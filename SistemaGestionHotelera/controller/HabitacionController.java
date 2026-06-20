@@ -12,9 +12,9 @@ import java.util.List;
 
 /**
  * Controlador de habitaciones (GRASP - Controlador).
- * Coordina el registro de habitaciones (CU2) y la consulta de
- * disponibilidad (CU4). Usa el patron Factory Method para instanciar
- * la habitacion segun su tipo, sin acoplarse a las clases concretas.
+ * Coordina registro de habitaciones (CU2) y consulta de
+ * disponibilidad (CU4). Usa patron Factory Method para instanciar
+ * la habitacion segun tipo, sin acoplarse a clases concretas.
  */
 public class HabitacionController {
 
@@ -24,7 +24,7 @@ public class HabitacionController {
         this.repo = repo;
     }
 
-    /** Selecciona la fabrica adecuada segun el tipo solicitado (Factory Method). */
+    /** Selecciona fabrica segun el tipo solicitado (Factory Method). */
     private HabitacionFactory obtenerFactory(TipoHabitacion tipo) {
         switch (tipo) {
             case PREMIUM: return new PremiumFactory();

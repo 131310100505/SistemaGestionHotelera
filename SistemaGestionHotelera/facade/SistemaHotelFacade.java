@@ -22,8 +22,8 @@ import java.util.List;
 
 /**
  * Patron FACADE.
- * Ofrece una interfaz unica y simplificada para operar el sistema hotelero,
- * ocultando la complejidad de coordinar los distintos controladores,
+ * Ofrece interfaz para operar el sistema hotelero,
+ * oculta complejidad de coordinar distintos controladores,
  * repositorios y patrones internos.
  * GRASP - Bajo Acoplamiento: el cliente (Main) interactua solo con la
  * fachada y no con cada subsistema por separado.

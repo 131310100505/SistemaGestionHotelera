@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SistemaGestionHotelera" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/SistemaGestionHotelera/out" />
     </content>
     <orderEntry type="jdk" jdkName="o" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

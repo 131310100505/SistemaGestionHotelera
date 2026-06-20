@@ -4,10 +4,6 @@ package SistemaGestionHotelera.repository;
  * Patron SINGLETON.
  * Garantiza una unica instancia de conexion/configuracion de acceso a la
  * base de datos durante toda la ejecucion del sistema.
- *
- * En esta primera version se simula la conexion (sin driver JDBC real),
- * para que el sistema sea ejecutable por consola. En la Fase 3 se
- * reemplazara la simulacion por una conexion JDBC concreta.
  */
 public class DatabaseConnection {
 
