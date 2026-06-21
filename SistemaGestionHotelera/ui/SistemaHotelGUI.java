@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class SistemaHotelGUI extends JFrame {
 
-    private final SistemaHotelFacade hotel = new SistemaHotelFacade();
+    private static final SistemaHotelFacade hotel = new SistemaHotelFacade();
     private final JTextArea salida = new JTextArea();
     private final NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "AR"));
     private final boolean modoHuesped;
@@ -50,6 +50,9 @@ public class SistemaHotelGUI extends JFrame {
             agregarBoton(panelBotones, "Consultar estado de reserva", this::consultarEstadoReserva);
             agregarBoton(panelBotones, "Consultar historial", this::consultarHistorial);
             agregarBoton(panelBotones, "Limpiar pantalla", () -> salida.setText(""));
+            agregarBoton(panelBotones,
+                    "Volver al menú principal",
+                    this::volverMenuPrincipal);
         } else {
             agregarBoton(panelBotones, "Registrar huésped", this::registrarHuesped);
             agregarBoton(panelBotones, "Registrar habitación", this::registrarHabitacion);
@@ -63,6 +66,9 @@ public class SistemaHotelGUI extends JFrame {
             agregarBoton(panelBotones, "Registrar pago", this::registrarPago);
             agregarBoton(panelBotones, "Consultar historial", this::consultarHistorial);
             agregarBoton(panelBotones, "Limpiar pantalla", () -> salida.setText(""));
+            agregarBoton(panelBotones,
+                    "Volver al menú principal",
+                    this::volverMenuPrincipal);
         }
 
         salida.setEditable(false);
@@ -406,6 +412,14 @@ public class SistemaHotelGUI extends JFrame {
         inicio.add(titulo, BorderLayout.NORTH);
         inicio.add(panel, BorderLayout.CENTER);
         inicio.setVisible(true);
+    }
+    private void volverMenuPrincipal() {
+
+        dispose();
+
+        SwingUtilities.invokeLater(
+                SistemaHotelGUI::mostrarMenuInicial
+        );
     }
 
     public static void main(String[] args) {
