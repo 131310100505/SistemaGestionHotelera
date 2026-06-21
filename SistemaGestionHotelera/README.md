@@ -7,7 +7,7 @@ Integrantes del grupo:
 
 Descripción del sistema:
 Sistema de Gestión Hotelera desarrollado en Java que permite administrar huéspedes, habitaciones, reservas, pagos y servicios adicionales.
-El proyecto fue diseñado aplicando patrones de diseño, principios SOLID y GRASP para lograr una arquitectura modular, extensible y de bajo acoplamiento.
+El sistema cuenta con una interfaz gráfica (Swing) y una versión de demostración por consola. El proyecto fue diseñado aplicando patrones de diseño, principios SOLID y GRASP para lograr una arquitectura modular, extensible y de bajo acoplamiento.
 
 Instrucciones para ejecutar el proyecto:
 
@@ -22,6 +22,10 @@ Instrucciones para ejecutar el proyecto:
    SistemaGestionHotelera.main.Main
    o
    SistemaGestionHotelera.ui.SistemaHotelGUI
+4. Al ejecutar SistemaHotelGUI se mostrará un menú inicial que permite ingresar como:
+    - Administrador
+    - Huésped
+Cada rol dispone de funcionalidades específicas para la gestión de reservas.
 
 Patrones aplicados:
 

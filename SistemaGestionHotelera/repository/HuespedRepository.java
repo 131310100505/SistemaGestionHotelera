@@ -9,8 +9,7 @@ import java.util.Map;
 
 /**
  * Repositorio de huespedes. Implementa la persistencia mediante la
- * unica instancia de {@link DatabaseConnection} (Singleton).
- * En esta version se utiliza almacenamiento en memoria como simulacion.
+ * unica instancia de {@link DatabaseConnection} (Singleton). simulado
  */
 public class HuespedRepository implements Repository<Huesped> {
 

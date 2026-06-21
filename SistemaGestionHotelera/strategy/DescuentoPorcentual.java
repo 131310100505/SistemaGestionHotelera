@@ -2,7 +2,7 @@ package SistemaGestionHotelera.strategy;
 
 /**
  * Patron STRATEGY - Estrategia concreta: descuento porcentual fijo.
- * Aplica un porcentaje de descuento (por ejemplo, una promocion del 15%).
+ * Aplica un porcentaje de descuento
  */
 public class DescuentoPorcentual implements DescuentoStrategy {
 

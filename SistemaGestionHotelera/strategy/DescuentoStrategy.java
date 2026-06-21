@@ -3,7 +3,7 @@ package SistemaGestionHotelera.strategy;
 /**
  * Patron STRATEGY - Interfaz de estrategia de descuento.
  * Permite intercambiar el algoritmo de calculo de descuento sin
- * modificar la logica de la Reserva (principio Abierto/Cerrado - OCP).
+ * modificar la logica de la Reserva (principio Abierto/Cerrado
  */
 public interface DescuentoStrategy {
 
